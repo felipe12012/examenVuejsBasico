@@ -2,7 +2,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">CameraShop</a>
+                <router-link to="/" class="navbar-brand" href="#">CameraShop</router-link>
                 <button
                     class="navbar-toggler"
                     type="button"
