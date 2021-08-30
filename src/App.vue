@@ -1,17 +1,83 @@
 <template>
     <div id="app">
-        <!-- boton contador de carrito  -->
-        <button type="button" class="btn btn-primary position-relative mt-5">
-            Carrito <i class="bi bi-basket"></i>
-            <span
-                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            >
-                {{carrito.length}}
-                <span class="visually-hidden">unread messages</span>
-            </span>
-        </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">CameraShop</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                >
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <router-link
+                                to="/"
+                                class="nav-link active"
+                                aria-current="page"
+                                >Home</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="{ name: 'formulario' }"
+                                class="nav-link"
+                                >Agregar producto</router-link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <router-link
+                                :to="{
+                                    name: 'catalogo',
+                                    params: { contenedor: this.contenedor },
+                                }"
+                                class="nav-link"
+                                >Catálogo</router-link
+                            >
+                        </li>
+                        <!-- <li class="nav-item">
+                            <router-link
+                                :to="{ name: 'carrito' }"
+                                class="nav-link"
+                                >Carrito</router-link
+                            >
+                        </li> -->
+                    </ul>
+                    <form class="d-flex mx-3">
+                        <router-link
+                            :to="{ name: 'carrito' }"
+                            type="button"
+                            class="btn btn-primary position-relative "
+                        >
+                            <i class="bi bi-basket"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            >
+                                {{ carrito.length }}
+                                <span class="visually-hidden"
+                                    >unread messages</span
+                                >
+                            </span>
+                        </router-link>
+                        
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <router-view @agregar="agregar" />
 
-        <div id="nav">
+        <!-- boton contador de carrito  -->
+
+        <!-- <div id="nav">
             <router-link to="/">Home</router-link> |
             <router-link :to="{ name: 'formulario' }"
                 >Agregar producto</router-link
@@ -25,15 +91,17 @@
             >|
             <router-link :to="{ name: 'carrito' }">Carrito</router-link>
         </div>
-        <router-view @agregar="agregar" />
+        <router-view @agregar="agregar" /> -->
+        <Footer />
     </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import Footer from './components/Footer.vue'
+import { mapState } from "vuex";
 export default {
     name: "App",
-    components: {},
+    components: { Footer},
     data() {
         return {
             nombreProducto: "",
@@ -43,26 +111,26 @@ export default {
                 {
                     id: 1,
                     nombreProducto: "Cámara Canon ",
-                    modelo: "EOS-2000D",
-                    cantidad: 3,
+                    modelo: "EOS-R5",
+                    cantidad: 1,
                     url:
-                        "https://amielectromercado.com/690-large_default/canon-camara-eos-2000d-18-55islp-e10.jpg",
+                        "http://i1.adis.ws/i/canon/eos-r5_front_rf24-105mmf4lisusm_square_32c26ad194234d42b3cd9e582a21c99b",
                 },
                 {
                     id: 2,
                     nombreProducto: "Cámara Canon",
-                    modelo: "EOS-6D",
-                    cantidad: 3,
+                    modelo: "EOS-T100",
+                    cantidad: 1,
                     url:
-                        "https://www.canon.es/media/EOS-6D_Default_tcm86-965776.jpg",
+                        "https://falabella.scene7.com/is/image/Falabella/6886486_1?wid=800&hei=800&qlt=70",
                 },
                 {
                     id: 3,
                     nombreProducto: "Cámara Canon",
-                    modelo: "EOS-6D",
-                    cantidad: 3,
+                    modelo: "REBELD SL3",
+                    cantidad: 1,
                     url:
-                        "https://m.media-amazon.com/images/I/71aAr9jv+VL._AC_SL1500_.jpg",
+                        "https://www.pcfactory.cl/public/foto/41160/1_500.jpg?t=1615581638",
                 },
             ],
         };
@@ -73,18 +141,18 @@ export default {
             this.contenedor.push(data);
         },
     },
-    computed:{
-      ...mapState(['carrito'])
-    }
+    computed: {
+        ...mapState(["carrito"]),
+    },
 };
 </script>
 
-<style>
+<style scoped>
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    /* text-align: center; */
     color: #2c3e50;
 }
 

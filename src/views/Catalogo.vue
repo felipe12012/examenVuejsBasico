@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <h1>catalogo</h1>
+    <div class="container my-5">
+        <h1 class="mb-5">catalogo</h1>
 
        
         <Card class="row d-flex justify-content-between" :contenedor="this.contenedor" />
@@ -21,3 +21,7 @@ export default {
     },
 };
 </script>
+
+<style>
+h1{text-align: center;}
+</style>
